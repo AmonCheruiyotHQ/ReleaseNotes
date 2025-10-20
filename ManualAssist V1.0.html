@@ -218,7 +218,7 @@
                 <ul class="feature-list">
                     <li><strong>Automatic Stop Loss Protection:</strong> Instantly sets SL at your specified distance when a new trade is detected without Stop Loss</li>
                     <li><strong>Optional Trailing Stop:</strong> Automatically trails your stop loss as the trade moves in profit, protecting gains</li>
-                    <li><strong>Account-Wide Monitoring:</strong> Works with all positions on your account regardless of symbol or magic number</li>
+                    <li><strong>Symbol-Specific Management:</strong> Each EA instance manages only trades for its chart's symbol, allowing different settings per symbol</li>
                     <li><strong>One-Time SL Setting:</strong> Each trade is processed only once to avoid interfering with manual adjustments</li>
                     <li><strong>Mobile Trading Compatible:</strong> Perfect for traders who execute from mobile devices</li>
                     <li><strong>Lightweight & Efficient:</strong> Minimal resource usage, runs independently on any chart</li>
@@ -228,8 +228,11 @@
             <div class="section">
                 <h2>How It Works</h2>
                 
+                <h3>Symbol-Specific Protection</h3>
+                <p>ManualAssist is chart-dependent, meaning each EA instance only manages trades for the symbol of the chart it's attached to. This allows you to run multiple instances with different settings for different instruments (e.g., one for US30 with larger SL, another for Gold with tighter SL).</p>
+                
                 <h3>Stop Loss Protection</h3>
-                <p>When you open a manual trade without a Stop Loss, ManualAssist immediately detects it and sets a protective SL at your pre-configured distance. This happens automatically within seconds, eliminating the risk window where rapid price movements could create large floating losses.</p>
+                <p>When you open a manual trade without a Stop Loss on a monitored symbol, ManualAssist immediately detects it and sets a protective SL at your pre-configured distance. This happens automatically within seconds, eliminating the risk window where rapid price movements could create large floating losses.</p>
                 
                 <h3>Trailing Stop (Optional)</h3>
                 <p>When enabled, the EA monitors profitable positions and automatically moves the Stop Loss to lock in profits as price moves favorably. The trailing stop only activates once the position is in profit by at least the trailing distance.</p>
@@ -267,16 +270,26 @@
                 <ol class="steps">
                     <li>Copy the ManualAssist V1.0.mq5 file to your MT5 <code>Experts</code> folder</li>
                     <li>Open MetaEditor and compile the EA (or restart MT5 to auto-compile)</li>
-                    <li>Attach the EA to any chart (it monitors all symbols)</li>
-                    <li>Configure the parameters:
+                    <li>Attach the EA to the chart of each symbol you want to protect:
                         <ul style="margin-top: 8px; margin-left: 20px;">
-                            <li><strong>StopLossPoints:</strong> Set your preferred SL distance (e.g., 500 for 50 pips)</li>
+                            <li>For US30: Attach to US30 chart with US30-specific settings</li>
+                            <li>For Gold: Attach to Gold chart with Gold-specific settings</li>
+                            <li>Each EA instance only manages trades for its chart's symbol</li>
+                        </ul>
+                    </li>
+                    <li>Configure the parameters for each symbol:
+                        <ul style="margin-top: 8px; margin-left: 20px;">
+                            <li><strong>StopLossPoints:</strong> Set your preferred SL distance (e.g., 2000 for US30, 500 for Gold)</li>
                             <li><strong>TrailingStopPoints:</strong> Set trailing distance or leave at 0 to disable</li>
                         </ul>
                     </li>
                     <li>Enable AutoTrading in MT5</li>
-                    <li>The EA will now monitor all manual trades and apply protection automatically</li>
+                    <li>Each EA will now monitor and protect trades for its specific symbol</li>
                 </ol>
+                
+                <div class="info-box">
+                    <strong>Multi-Symbol Trading:</strong> If you trade multiple symbols, simply attach the EA to multiple charts with different settings. For example, attach to US30 with SL=2000 points and to Gold with SL=500 points. Each instance works independently.
+                </div>
             </div>
             
             <div class="section">
@@ -285,10 +298,19 @@
                 <h3>Best Practices</h3>
                 <ul class="feature-list">
                     <li>Test on a demo account first to determine optimal point values for your trading style</li>
-                    <li>Consider your typical spread and volatility when setting SL distance</li>
-                    <li>The EA only needs to run on one chart to protect all positions</li>
-                    <li>Leave the EA running continuously for best protection</li>
+                    <li>Consider your typical spread and volatility when setting SL distance for each symbol</li>
+                    <li>Attach EA to separate charts for each symbol you trade (e.g., US30 chart and Gold chart)</li>
+                    <li>Each symbol can have completely different settings based on its characteristics</li>
+                    <li>Leave the EA running continuously on each chart for best protection</li>
                     <li>If you manually adjust SL after the EA sets it, the EA won't override your changes</li>
+                </ul>
+                
+                <h3>Example Multi-Symbol Setup</h3>
+                <ul class="feature-list">
+                    <li><strong>US30 Chart:</strong> StopLossPoints = 2000 (200 pips), TrailingStopPoints = 1000</li>
+                    <li><strong>Gold Chart:</strong> StopLossPoints = 500 (50 pips), TrailingStopPoints = 300</li>
+                    <li>When you open a US30 trade from mobile → US30 EA applies 2000-point SL</li>
+                    <li>When you open a Gold trade from mobile → Gold EA applies 500-point SL</li>
                 </ul>
                 
                 <h3>Trailing Stop Behavior</h3>
@@ -311,8 +333,10 @@
                     <li>The EA processes each trade only once for SL setting to avoid conflicts with manual management</li>
                     <li>Trailing stop continues to update throughout the trade's lifetime (if enabled)</li>
                     <li>Works with trades opened through mobile, desktop, or web platforms</li>
+                    <li>Each EA instance only manages trades for the symbol of the chart it's attached to</li>
                     <li>Compatible with all symbols and timeframes</li>
                     <li>Does not interfere with trades that already have Stop Loss set</li>
+                    <li>Multiple EA instances can run simultaneously on different charts without conflicts</li>
                 </ul>
             </div>
             
@@ -362,9 +386,8 @@
         <div class="footer">
             <p><strong>ManualAssist V1.0</strong></p>
             <p>Automated Risk Protection for Manual Traders</p>
-            <p style="margin-top: 15px; font-size: 0.9em;">© AmonCheruiyotHQ 2025 - All Rights Reserved</p>
+            <p style="margin-top: 15px; font-size: 0.9em;">© 2025 - All Rights Reserved</p>
         </div>
     </div>
 </body>
-
 </html>
