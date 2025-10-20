@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ManualAssist V1.0 - Release Notes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .header .version {
+            font-size: 1.3em;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+        
+        .header .date {
+            margin-top: 15px;
+            opacity: 0.9;
+            font-size: 0.95em;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section h2 {
+            color: #667eea;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .section h3 {
+            color: #555;
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .section p {
+            margin-bottom: 12px;
+            color: #555;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+        
+        .feature-list li {
+            padding: 12px 0 12px 35px;
+            position: relative;
+            color: #444;
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+        
+        .parameter-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .parameter-table th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 500;
+        }
+        
+        .parameter-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .parameter-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .parameter-table tr:hover {
+            background: #f9f9f9;
+        }
+        
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .info-box strong {
+            color: #1976D2;
+        }
+        
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .warning-box strong {
+            color: #f57c00;
+        }
+        
+        .steps {
+            counter-reset: step-counter;
+            list-style: none;
+            margin: 15px 0;
+        }
+        
+        .steps li {
+            counter-increment: step-counter;
+            padding: 12px 0 12px 45px;
+            position: relative;
+            color: #444;
+        }
+        
+        .steps li:before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 8px;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .footer {
+            background: #f5f5f5;
+            padding: 30px 40px;
+            text-align: center;
+            color: #777;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ManualAssist</h1>
+            <div class="version">Version 1.0 - Initial Release</div>
+            <div class="date">Release Date: October 2025</div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2>Overview</h2>
+                <p>ManualAssist V1.0 is a specialized Expert Advisor designed to protect manual traders from sudden market movements. It automatically manages risk by setting Stop Loss levels immediately when trades are opened, and optionally implements trailing stops to protect profits.</p>
+                
+                <p><strong>Primary Use Case:</strong> Mobile traders who need instant risk protection when opening positions manually, preventing large floating losses from rapid price movements.</p>
+            </div>
+            
+            <div class="section">
+                <h2>Key Features</h2>
+                <ul class="feature-list">
+                    <li><strong>Automatic Stop Loss Protection:</strong> Instantly sets SL at your specified distance when a new trade is detected without Stop Loss</li>
+                    <li><strong>Optional Trailing Stop:</strong> Automatically trails your stop loss as the trade moves in profit, protecting gains</li>
+                    <li><strong>Account-Wide Monitoring:</strong> Works with all positions on your account regardless of symbol or magic number</li>
+                    <li><strong>One-Time SL Setting:</strong> Each trade is processed only once to avoid interfering with manual adjustments</li>
+                    <li><strong>Mobile Trading Compatible:</strong> Perfect for traders who execute from mobile devices</li>
+                    <li><strong>Lightweight & Efficient:</strong> Minimal resource usage, runs independently on any chart</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>How It Works</h2>
+                
+                <h3>Stop Loss Protection</h3>
+                <p>When you open a manual trade without a Stop Loss, ManualAssist immediately detects it and sets a protective SL at your pre-configured distance. This happens automatically within seconds, eliminating the risk window where rapid price movements could create large floating losses.</p>
+                
+                <h3>Trailing Stop (Optional)</h3>
+                <p>When enabled, the EA monitors profitable positions and automatically moves the Stop Loss to lock in profits as price moves favorably. The trailing stop only activates once the position is in profit by at least the trailing distance.</p>
+            </div>
+            
+            <div class="section">
+                <h2>Parameters</h2>
+                
+                <table class="parameter-table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                        <th>Default</th>
+                    </tr>
+                    <tr>
+                        <td><strong>StopLossPoints</strong></td>
+                        <td>Distance for automatic Stop Loss in points. Set to 0 to disable automatic SL.</td>
+                        <td>500 points</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TrailingStopPoints</strong></td>
+                        <td>Distance for trailing stop in points. Set to 0 to disable trailing stop feature.</td>
+                        <td>0 (disabled)</td>
+                    </tr>
+                </table>
+                
+                <div class="info-box">
+                    <strong>Note on Points vs Pips:</strong> Values are in points, not pips. For 5-digit brokers (e.g., EUR/USD quoted as 1.08500), 500 points = 50 pips. For 3-digit brokers (e.g., USD/JPY quoted as 149.50), 500 points = 5 pips.
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Installation & Setup</h2>
+                
+                <ol class="steps">
+                    <li>Copy the ManualAssist V1.0.mq5 file to your MT5 <code>Experts</code> folder</li>
+                    <li>Open MetaEditor and compile the EA (or restart MT5 to auto-compile)</li>
+                    <li>Attach the EA to any chart (it monitors all symbols)</li>
+                    <li>Configure the parameters:
+                        <ul style="margin-top: 8px; margin-left: 20px;">
+                            <li><strong>StopLossPoints:</strong> Set your preferred SL distance (e.g., 500 for 50 pips)</li>
+                            <li><strong>TrailingStopPoints:</strong> Set trailing distance or leave at 0 to disable</li>
+                        </ul>
+                    </li>
+                    <li>Enable AutoTrading in MT5</li>
+                    <li>The EA will now monitor all manual trades and apply protection automatically</li>
+                </ol>
+            </div>
+            
+            <div class="section">
+                <h2>Usage Guidelines</h2>
+                
+                <h3>Best Practices</h3>
+                <ul class="feature-list">
+                    <li>Test on a demo account first to determine optimal point values for your trading style</li>
+                    <li>Consider your typical spread and volatility when setting SL distance</li>
+                    <li>The EA only needs to run on one chart to protect all positions</li>
+                    <li>Leave the EA running continuously for best protection</li>
+                    <li>If you manually adjust SL after the EA sets it, the EA won't override your changes</li>
+                </ul>
+                
+                <h3>Trailing Stop Behavior</h3>
+                <ul class="feature-list">
+                    <li>Only trails when position is in profit by at least the trailing distance</li>
+                    <li>For BUY positions: SL trails below price, moving up as price rises</li>
+                    <li>For SELL positions: SL trails above price, moving down as price falls</li>
+                    <li>Never moves SL in an unfavorable direction</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>Important Notes</h2>
+                
+                <div class="warning-box">
+                    <strong>⚠ Risk Disclaimer:</strong> While ManualAssist provides automated risk protection, no system can guarantee against losses. Always ensure your position sizing and risk parameters are appropriate for your account and risk tolerance. Test thoroughly on demo before live trading.
+                </div>
+                
+                <ul class="feature-list">
+                    <li>The EA processes each trade only once for SL setting to avoid conflicts with manual management</li>
+                    <li>Trailing stop continues to update throughout the trade's lifetime (if enabled)</li>
+                    <li>Works with trades opened through mobile, desktop, or web platforms</li>
+                    <li>Compatible with all symbols and timeframes</li>
+                    <li>Does not interfere with trades that already have Stop Loss set</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>Technical Specifications</h2>
+                <table class="parameter-table">
+                    <tr>
+                        <th>Specification</th>
+                        <th>Details</th>
+                    </tr>
+                    <tr>
+                        <td>Platform</td>
+                        <td>MetaTrader 5</td>
+                    </tr>
+                    <tr>
+                        <td>Version</td>
+                        <td>1.0</td>
+                    </tr>
+                    <tr>
+                        <td>Programming Language</td>
+                        <td>MQL5</td>
+                    </tr>
+                    <tr>
+                        <td>Account Type</td>
+                        <td>All account types (Hedging & Netting)</td>
+                    </tr>
+                    <tr>
+                        <td>Symbols</td>
+                        <td>All symbols supported</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="section">
+                <h2>Support & Future Updates</h2>
+                <p>This is the initial release of ManualAssist. Future versions may include additional features based on user feedback such as:</p>
+                <ul class="feature-list">
+                    <li>Automatic Take Profit setting</li>
+                    <li>Break-even functionality</li>
+                    <li>Time-based trade management</li>
+                    <li>Symbol-specific settings</li>
+                    <li>Partial close features</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>ManualAssist V1.0</strong></p>
+            <p>Automated Risk Protection for Manual Traders</p>
+            <p style="margin-top: 15px; font-size: 0.9em;">© AmonCheruiyotHQ 2025 - All Rights Reserved</p>
+        </div>
+    </div>
+</body>
+</html>
